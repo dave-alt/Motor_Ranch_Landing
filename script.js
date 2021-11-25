@@ -244,3 +244,14 @@ document.body.addEventListener("click", HighlightHotspots);
 
 //var animation = isBack ? ReverseAnimation(currentAnimation) : event.state.animation;
 //currentAnimation = event.state.animation;
+
+
+let speedVal = document.getElementById("speedVal");
+let speedLine = document.getElementById("speedLine");
+speedLine.style.transition=`all 0.5s ease-out`
+let score=0
+document.addEventListener("mousemove", (e) => {
+  score=Math.round(500 * Math.sin(e.clientX / 800))
+  speedVal.innerHTML = `${score}`;
+  speedLine.style.transform=`rotateZ(${100*Math.sin((score-250)/230)}deg)`
+});
