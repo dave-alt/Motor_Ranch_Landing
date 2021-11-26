@@ -245,13 +245,34 @@ document.body.addEventListener("click", HighlightHotspots);
 //var animation = isBack ? ReverseAnimation(currentAnimation) : event.state.animation;
 //currentAnimation = event.state.animation;
 
+document.querySelector("body").style.background="#131319"
 
 let speedVal = document.getElementById("speedVal");
 let speedLine = document.getElementById("speedLine");
-speedLine.style.transition=`all 0.5s ease-out`
-let score=0
+speedLine.style.transition = `all 0.5s ease-out`;
+let score = 0;
+let gear_count = 0;
+let id = "1";
 document.addEventListener("mousemove", (e) => {
-  score=Math.round(500 * Math.sin(e.clientX / 800))
-  speedVal.innerHTML = `${score}`;
-  speedLine.style.transform=`rotateZ(${100*Math.sin((score-250)/230)}deg)`
+  score = Math.round(500 * Math.sin(e.clientX / 800));
+  speedLine.style.transform = `rotateZ(${
+    100 * Math.sin((score - 250) / 230)
+  }deg)`;
+  gear_count = Math.round(score / 55 + 1);
+  speedVal.innerHTML = `${Math.round(gear_count / 2)}`;
+for (let i = 1; i <= gear_count; i++) {
+    id = i.toString();
+    if (i >= 8) {
+      if (i == 10) {
+        document.getElementById("caution").style.visibility = "visible";
+      } else {
+        document.getElementById("caution").style.visibility = "hidden";
+      }
+      document.getElementById(id).style.fill = `rgb(212, 233, 255)`;
+    } else document.getElementById(id).style.fill = `rgb(216,216,216)`;
+  }
+  for (let i = gear_count + 1; i <= 10; i++) {
+    id = i.toString();
+    document.getElementById(id).style.fill = `rgb(52,52,52)`;
+  }
 });

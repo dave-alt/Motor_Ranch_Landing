@@ -7,6 +7,9 @@
 	top: 1005px;
     	left: 700px;
 }
+.bars rect{
+	transition:all 0.2s ease-out;
+}
 html, body {
     height: 100%;
     margin: 0px;
